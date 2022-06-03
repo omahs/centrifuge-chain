@@ -99,6 +99,7 @@ pallet-treasury = { git = "https://github.com/paritytech/substrate", default-fea
 pallet-uniques = { git = "https://github.com/paritytech/substrate",  default-features = false , branch = "polkadot-v0.9.24" }
 
 # orml pallets
+orml-asset-registry = {  git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = false, branch = "polkadot-v0.9.24" }
 orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = false, branch = "polkadot-v0.9.24" }
 orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = false, branch = "polkadot-v0.9.24" }
 orml-xcm-support = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = false, branch = "polkadot-v0.9.24" }
@@ -200,7 +201,8 @@ std = [
     "pallet-nft-sales/std",
     "pallet-permissions/std",
     "orml-tokens/std",
-    "orml-xtokens/std"
+    "orml-xtokens/std",
+    "orml-asset-registry/std",
 ]
 runtime-benchmarks = [
     "frame-benchmarking/runtime-benchmarks",
