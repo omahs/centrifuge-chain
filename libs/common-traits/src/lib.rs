@@ -179,12 +179,12 @@ pub trait PreConditions<T> {
 #[tuple_types_custom_trait_bound(PreConditions<T, Result = bool>)]
 impl<T> PreConditions<T> for Tuple
 where
-	T: Clone,
+	T: Copy,
 {
 	type Result = bool;
 
 	fn check(t: T) -> Self::Result {
-		for_tuples!( #( <Tuple as PreConditions::<T>>::check(t.clone()) )&* )
+		for_tuples!( #( <Tuple as PreConditions::<T>>::check(t) )&* )
 	}
 }
 

@@ -141,7 +141,7 @@ impl<T: Config> Pallet<T> {
 		let _ = T::Currency::withdraw(
 			from,
 			fee,
-			WithdrawReasons::FEE.into(),
+			WithdrawReasons::FEE,
 			ExistenceRequirement::KeepAlive,
 		)?;
 
@@ -153,7 +153,7 @@ impl<T: Config> Pallet<T> {
 		let value = T::Currency::withdraw(
 			&from,
 			fee,
-			WithdrawReasons::FEE.into(),
+			WithdrawReasons::FEE,
 			ExistenceRequirement::KeepAlive,
 		)?;
 
@@ -181,7 +181,7 @@ impl<T: Config> Pallet<T> {
 	/// Change the fee for the given key
 	fn change_fee(key: T::Hash, fee: BalanceOf<T>) {
 		let new_fee = Fee {
-			key: key.clone(),
+			key,
 			price: fee,
 		};
 		<Fees<T>>::insert(key, new_fee);
