@@ -248,10 +248,12 @@ pub mod asset_registry {
 }
 
 pub mod xcm {
-	use crate::{xcm_fees::default_per_second, Balance, CustomMetadata};
+	use crate::{xcm_fees::default_per_second, AccountId, Balance, CustomMetadata};
 	use common_types::CurrencyId;
 	use frame_support::sp_std::marker::PhantomData;
+	use sp_runtime::traits::{Convert, Zero};
 	use xcm::latest::MultiLocation;
+	use xcm::v1::{Junction::*, Junctions::*, NetworkId};
 
 	/// Our FixedConversionRateProvider, used to charge XCM-related fees for tokens registered in
 	/// the asset registry that were not already handled by native Trader rules.
@@ -272,6 +274,17 @@ pub mod xcm {
 				.xcm
 				.fee_per_second
 				.or_else(|| Some(default_per_second(metadata.decimals)))
+		}
+	}
+
+	pub struct AccountIdToMultiLocation;
+	impl Convert<AccountId, MultiLocation> for AccountIdToMultiLocation {
+		fn convert(account: AccountId) -> MultiLocation {
+			X1(AccountId32 {
+				network: NetworkId::Any,
+				id: account.into(),
+			})
+			.into()
 		}
 	}
 }

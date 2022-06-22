@@ -30,6 +30,7 @@ use xcm_executor::{traits::JustTry, XcmExecutor};
 pub use common_types::CurrencyId;
 use runtime_common::{
 	decimals, parachains,
+	xcm::AccountIdToMultiLocation,
 	xcm::FixedConversionRateProvider,
 	xcm_fees::{default_per_second, ksm_per_second, native_per_second},
 };
@@ -361,15 +362,4 @@ impl orml_xtokens::Config for Runtime {
 impl cumulus_pallet_xcm::Config for Runtime {
 	type Event = Event;
 	type XcmExecutor = XcmExecutor<XcmConfig>;
-}
-
-pub struct AccountIdToMultiLocation;
-impl Convert<AccountId, MultiLocation> for AccountIdToMultiLocation {
-	fn convert(account: AccountId) -> MultiLocation {
-		X1(AccountId32 {
-			network: NetworkId::Any,
-			id: account.into(),
-		})
-		.into()
-	}
 }
