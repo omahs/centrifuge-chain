@@ -84,6 +84,7 @@ altair-runtime = { path = "../altair" }
 centrifuge-runtime = { path = "../centrifuge" }
 
 [dev-dependencies]
+hex = { version = "0.4.3", default_features = false }
 sp-io = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.26" }
 xcm-executor = { git = "https://github.com/paritytech/polkadot", branch = "release-v0.9.26" }
 cfg-traits = { path = "../../libs/traits" }
@@ -91,6 +92,7 @@ cfg-types = { path = "../../libs/types" }
 pallet-pools = { path = "../../pallets/pools" }
 pallet-loans = { path = "../../pallets/loans" }
 pallet-permissions = { path = "../../pallets/permissions" }
+pallet-connectors = { path = "../../pallets/connectors" }
 
 [features]
 default = [ "runtime-development" ]
