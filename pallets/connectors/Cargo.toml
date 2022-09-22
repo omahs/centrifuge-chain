@@ -49,21 +49,21 @@ hex = "0.4.3"
 serde = { version = "1.0.102" }
 
 # Our pallets
-pallet-pools = { path = "../pools", default-features = false}
-pallet-loans = { path = "../loans", default-features = false}
-pallet-interest-accrual = { path = "../interest-accrual", default-features = false}
-pallet-permissions = { path = "../permissions", default-features = false}
+pallet-pools = { path = "../pools", default-features =  true }
+pallet-loans = { path = "../loans", default-features =  true }
+pallet-interest-accrual = { path = "../interest-accrual",  default-features =  true }
+pallet-permissions = { path = "../permissions", default-features =  true }
 
 # Substrate crates & pallets
-sp-core = { git = "https://github.com/paritytech/substrate", default-features = false , branch = "polkadot-v0.9.26" }
-sp-io = { git = "https://github.com/paritytech/substrate", default-features = false , branch = "polkadot-v0.9.26" }
-pallet-balances = { git = "https://github.com/paritytech/substrate",  default-features = false , branch = "polkadot-v0.9.26" }
-pallet-timestamp = { git = "https://github.com/paritytech/substrate",  default-features = false , branch = "polkadot-v0.9.26" }
-pallet-uniques = { git = "https://github.com/paritytech/substrate",  default-features = false , branch = "polkadot-v0.9.26" }
+sp-core = { git = "https://github.com/paritytech/substrate", default-features = true , branch = "polkadot-v0.9.26" }
+sp-io = { git = "https://github.com/paritytech/substrate", default-features = true , branch = "polkadot-v0.9.26" }
+pallet-balances = { git = "https://github.com/paritytech/substrate",  default-features = true , branch = "polkadot-v0.9.26" }
+pallet-timestamp = { git = "https://github.com/paritytech/substrate",  default-features = true , branch = "polkadot-v0.9.26" }
+pallet-uniques = { git = "https://github.com/paritytech/substrate",  default-features = true , branch = "polkadot-v0.9.26" }
 
 # Orml crates
 orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = true, branch = "polkadot-v0.9.26" }
-orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = false, branch = "polkadot-v0.9.26" }
+orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = true, branch = "polkadot-v0.9.26" }
 
 # Local crates
 runtime-common = { path = "../../runtime/common", default-features = true }
