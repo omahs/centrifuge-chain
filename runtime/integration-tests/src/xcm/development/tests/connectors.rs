@@ -38,7 +38,7 @@ use development_runtime::{
 use frame_support::{assert_noop, assert_ok, dispatch::Weight};
 use hex::FromHex;
 use orml_traits::{asset_registry::AssetMetadata, FixedConversionRateProvider, MultiCurrency};
-use pallet_connectors::{Domain, Message, Router, XcmDomain};
+use pallet_connectors::{encoded_contract_call, Domain, Message, Router, XcmDomain};
 use pallet_pools::{TrancheInput, TrancheMetadata, TrancheType};
 use runtime_common::{xcm::general_key, xcm_fees::default_per_second};
 use sp_core::H160;
@@ -212,7 +212,7 @@ fn encoded_ethereum_xcm_add_pool() {
 	let connectors_message =
 		Message::<Domain, PoolId, TrancheId, Balance, Rate>::AddPool { pool_id: 12378532 };
 
-	let contract_call = Connectors::encoded_contract_call(connectors_message.encode());
+	let contract_call = encoded_contract_call(connectors_message.encode());
 	let encoded_call = Connectors::encoded_ethereum_xcm_call(domain_info, contract_call);
 	let encoded_call_hex = hex::encode(encoded_call);
 

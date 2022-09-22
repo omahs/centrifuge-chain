@@ -13,7 +13,6 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 use cfg_traits::PoolInspect;
 use codec::{Decode, Encode};
-use ethabi::{Bytes, Contract};
 use frame_support::traits::{
 	fungibles::{Inspect, Mutate, Transfer},
 	OriginTrait,
@@ -22,7 +21,7 @@ pub use pallet::*;
 use scale_info::TypeInfo;
 use sp_core::{TypeId, U256};
 use sp_runtime::{traits::AtLeast32BitUnsigned, FixedPointNumber};
-use sp_std::{boxed::Box, convert::TryInto, vec, vec::Vec};
+use sp_std::{boxed::Box, convert::TryInto, vec::Vec};
 
 pub mod weights;
 
@@ -31,6 +30,9 @@ pub use message::*;
 
 mod routers;
 pub use routers::*;
+
+mod contract;
+pub use contract::*;
 
 /// A Domain is a chain or network we can send a Connectors message to.
 /// The domain indices need to match those used in the EVM contracts and these
@@ -398,7 +400,7 @@ pub mod pallet {
 			let Router::Xcm(xcm_domain) =
 				<DomainRouter<T>>::get(domain.clone()).ok_or(Error::<T>::MissingRouter)?;
 
-			let contract_call = Self::encoded_contract_call(message.encode());
+			let contract_call = contract::encoded_contract_call(message.encode());
 			let ethereum_xcm_call =
 				Self::encoded_ethereum_xcm_call(xcm_domain.clone(), contract_call);
 
@@ -458,50 +460,5 @@ pub mod pallet {
 
 			encoded
 		}
-
-		/// Return the encoded contract call, i.e, ConnectorsXcmRouter::handle(encoded_msg).
-		pub fn encoded_contract_call(encoded_msg: Vec<u8>) -> Bytes {
-			let contract = xcm_router_contract();
-			let encoded_contract_call = contract
-				.function("handle")
-				.expect("Known at compilation time")
-				.encode_input(&[ethabi::Token::Bytes(encoded_msg)])
-				.expect("Known at compilation time");
-
-			encoded_contract_call
-		}
-	}
-}
-
-/// The ConnectorsXcmRouter Abi as in ethabi::Contract
-/// Note: We only concern ourselves with the `handle` function of the contract
-/// since that's all we need to build the calls for remote EVM execution.
-pub fn xcm_router_contract() -> Contract {
-	use sp_std::collections::btree_map::BTreeMap;
-
-	let mut functions = BTreeMap::new();
-	#[allow(deprecated)]
-	functions.insert(
-		"handle".into(),
-		vec![ethabi::Function {
-			name: "handle".into(),
-			inputs: vec![ethabi::Param {
-				name: "message".into(),
-				kind: ethabi::ParamType::Bytes,
-				internal_type: None,
-			}],
-			outputs: vec![],
-			constant: false,
-			state_mutability: Default::default(),
-		}],
-	);
-
-	ethabi::Contract {
-		constructor: None,
-		functions,
-		events: Default::default(),
-		errors: Default::default(),
-		receive: false,
-		fallback: false,
 	}
 }
