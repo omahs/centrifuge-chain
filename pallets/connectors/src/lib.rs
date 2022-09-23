@@ -182,6 +182,8 @@ pub mod pallet {
 		MissingRouter,
 		/// Transfer amount must be non-zero
 		InvalidTransferAmount,
+		/// A transfer to a non-whitelisted destination was attempted
+		UnauthorizedTransfer,
 		/// Failed to build Ethereum_Xcm call
 		FailedToBuildEthereumXcmCall,
 	}
@@ -353,7 +355,7 @@ pub mod pallet {
 					address.into_account_truncating(),
 					Role::PoolRole(PoolRole::TrancheInvestor(tranche_id, Self::now()))
 				),
-				BadOrigin
+				Error::<T>::UnauthorizedTransfer
 			);
 
 			ensure!(!amount.is_zero(), Error::<T>::InvalidTransferAmount);
