@@ -1,6 +1,6 @@
 [package]
 name = "centrifuge-chain"
-version = "0.10.20"
+version = "0.10.21"
 authors = ["Centrifuge <admin@centrifuge.io>"]
 description = "Centrifuge chain implementation in Rust."
 build = "build.rs"
@@ -28,7 +28,6 @@ path = "src/main.rs"
 [workspace]
 members = [
 	"pallets/restricted-tokens",
-	"pallets/bridge-mapping",
 	"pallets/fees",
 	"pallets/anchors",
 	"pallets/claims",

@@ -180,7 +180,7 @@ parameter_types! {
 	pub const ParachainId: u32 = 2008;
 }
 
-cfg_traits::mocks::orml_asset_registry::impl_mock! {
+cfg_traits::mocks::orml_asset_registry::impl_mock_registry! {
 	RegistryMock,
 	CurrencyId,
 	Balance,
@@ -238,7 +238,7 @@ impl PoolUpdateGuard for UpdateGuard {
 		PoolId,
 	>;
 	type ScheduledUpdateDetails =
-		ScheduledUpdateDetails<Rate, MaxTokenNameLength, MaxTokenSymbolLength>;
+		ScheduledUpdateDetails<Rate, MaxTokenNameLength, MaxTokenSymbolLength, MaxTranches>;
 
 	fn released(
 		_pool: &Self::PoolDetails,
@@ -307,7 +307,9 @@ impl pallet_interest_accrual::Config for MockRuntime {
 }
 
 parameter_types! {
+	#[derive(Debug, Eq, PartialEq, scale_info::TypeInfo, Clone)]
 	pub const MaxTranches: u8 = 5;
+
 	#[derive(Debug, Eq, PartialEq, scale_info::TypeInfo, Clone)]
 	pub const MinDelay: Moment = 0;
 
