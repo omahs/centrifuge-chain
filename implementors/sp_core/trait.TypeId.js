@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["cfg_types"] = [{"text":"impl&lt;PoolId&gt; TypeId for <a class=\"struct\" href=\"cfg_types/struct.PoolLocator.html\" title=\"struct cfg_types::PoolLocator\">PoolLocator</a>&lt;PoolId&gt;","synthetic":false,"types":["cfg_types::PoolLocator"]},{"text":"impl&lt;InvestmentId&gt; TypeId for <a class=\"struct\" href=\"cfg_types/struct.InvestmentAccount.html\" title=\"struct cfg_types::InvestmentAccount\">InvestmentAccount</a>&lt;InvestmentId&gt;","synthetic":false,"types":["cfg_types::InvestmentAccount"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

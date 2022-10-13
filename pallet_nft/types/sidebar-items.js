@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AssetId","A global identifier for an nft/asset on-chain. Composed of a registry and token id."],["BundleHasher","Bundle hasher used to validate mint"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["WeightInfo","Weight functions needed for pallet_investments."]]});

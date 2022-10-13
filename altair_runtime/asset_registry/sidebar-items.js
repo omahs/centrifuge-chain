@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AuthorityOrigin","The OrmlAssetRegistry::AuthorityOrigin impl"],["CustomAssetProcessor",""]]});

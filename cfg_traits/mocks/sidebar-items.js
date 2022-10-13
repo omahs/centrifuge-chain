@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["accountant",""],["orml_asset_registry",""]]});

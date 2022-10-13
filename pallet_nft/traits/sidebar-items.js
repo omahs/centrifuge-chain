@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["WeightInfo","Weight information for pallet extrinsics"]]});

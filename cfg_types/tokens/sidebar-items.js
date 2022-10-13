@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["CurrencyId",""]],"struct":[["CustomMetadata","A type describing our custom additional metadata stored in the OrmlAssetRegistry."],["TrancheToken","A type that can create a TrancheToken from a PoolId and a TrancheId"]],"type":[["ForeignAssetId",""]]});
