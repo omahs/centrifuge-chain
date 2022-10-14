@@ -38,6 +38,8 @@ use sp_std::{fmt::Debug, hash::Hash, str::FromStr};
 // #[cfg(test)]
 pub mod mocks;
 
+pub mod rewards;
+
 /// A trait used for loosely coupling the claim pallet with a reward mechanism.
 ///
 /// ## Overview
