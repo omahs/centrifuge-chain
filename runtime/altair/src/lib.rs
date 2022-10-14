@@ -311,7 +311,7 @@ impl pallet_authorship::Config for Runtime {
 }
 
 parameter_types! {
-	pub const Period: u32 = 6 * HOURS;
+	pub Period: u32 = prod_or_fast!(6 * HOURS, 1 * MINUTES, "AIR_SESSION_PERIOD");
 	pub const Offset: u32 = 0;
 }
 
@@ -1195,6 +1195,8 @@ impl pallet_interest_accrual::Config for Runtime {
 	type Balance = Balance;
 	type Event = Event;
 	type InterestRate = Rate;
+	// TODO: This is a stopgap value until we can calculate it correctly with updated benchmarks. See #1024
+	type MaxRateCount = MaxActiveLoansPerPool;
 	type Time = Timestamp;
 	type Weights = ();
 }
